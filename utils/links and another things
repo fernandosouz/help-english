@@ -1,0 +1,96 @@
+TO-DO PRIORIDADE:
+  MARCAR DETERMINADA PALAVRA PARA QUE NÃO VENHA MAIS - OK
+  CRIAR ESTRUTURA PARA CONSEGUIR COLOCAR QUANTIDADE DE PALAVRAS ELIMINADAS USUÁRIO NO FIREBASE - OK
+  ELIMINAR X PALAVRAS MAIS USADAS NO INGLÊS - OK
+
+  MELHORAR LAYUOT - ANDAMENTO
+
+  CRIAR VIDEO ANIMADO PARA AJUDAR A EXPLICAR
+  -COMO ESCONDER A CONFIG DO FIREBASE
+      MINIMIZAR: https://skalman.github.io/UglifyJS-online/
+
+  ENTENDER COMO IDENTIFICAR SE O SISTEMA AJUDOU
+
+  SUBIR SPRING QUE VAI FAZER O CRAWLER??
+  SUBIR NA NUVEM??
+  TRADUÇÕES DA MESMA PALAVRA E PALAVRAS PARECIDAS
+
+
+AUTHENTICATION - OK
+TESTAR COM: FERNANDA / MÃE / TCHUCA / EU
+
+
+
+
+PERMITIR QUE O USUÁRIO DEFINA O TEMPO DE BUSCA NO VÍDEO
+
+PERMITIR QUE O USUÁRIO DEFINA COMO O SISTEMA VAI AMADURECER
+    >>>MAIS RÁPIDO/LENTO O COUNT DIMINUI/AUMENTA
+          >>>O COUNT DEVERIA SER PARA CADA PALAVRA?
+          >>>COUNT ÚNICO PARA TODAS AS PALAVRAS?
+
+
+REFAZER COM ANGULAR/REACT
+
+
+AUTHENTICATION
+
+APLICATIVO??
+
+HOSPEDAGEM
+
+DÚVIDAS:
+ÁUDIO DA PALAVRA???
+
+
+possible videos:
+  jls7MYW5egY
+  nRiHKI_8u0A
+  4E_1AB1rsSw
+  XewnyUJgyA4
+  wzkFoetp-_M
+  UIAm1g_Vgn0
+  pxEcvU0Vp_M
+  8jPQjjsBbIc
+  NcX2AwH3cG8
+
+
+Links:
+  https://video.google.com/timedtext?type=list&v=BExyY6AI-IQ
+
+
+
+criar table pelo js
+phrasesPt.sort(randOrd);
+var table = document.createElement('table');
+table.style = 'width:500px;border:1px solid #CCC;';
+var tbody = document.createElement('tbody');
+for(i in phrasesPt){
+      let tr = document.createElement('tr');
+      // 1
+      let td = document.createElement('td');
+      td.style = 'width:100px;border:1px solid #CCC;';
+      let span = document.createElement('span');
+      span.innerHTML = phrasesEn[i];
+      td.appendChild(span);
+      tr.appendChild(td);
+
+      //2
+      td = document.createElement('td');
+      td.style = 'border:1px solid #CCC;';
+      span = document.createElement('input');
+      td.appendChild(span);
+      tr.appendChild(td);
+
+      //3
+      td = document.createElement('td');
+      td.style = 'border:1px solid #CCC;';
+      span = document.createElement('span');
+      span.innerHTML = phrasesPt[i]
+      td.appendChild(span);
+      tr.appendChild(td);
+
+      tbody.appendChild(tr);
+  }
+  table.appendChild(tbody);
+  document.body.appendChild(table);

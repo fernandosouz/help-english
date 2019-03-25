@@ -1,0 +1,168 @@
+<html ng-app>
+<head>
+<title>English Help</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css" />
+<link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+
+<script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://code.angularjs.org/1.0.1/angular-1.0.1.min.js"></script>
+
+<script src="script.js"></script>
+<script src="firebaseScripts.js"></script>
+</head>
+<body ng-controller="littleHandController" style="font-family: sans-serif">
+
+  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyD7fyVlMQh9SkNWuZbUAGzC10V_fJXrVUU",
+      authDomain: "learn-language-test.firebaseapp.com",
+      databaseURL: "https://learn-language-test.firebaseio.com",
+      projectId: "learn-language-test",
+      storageBucket: "learn-language-test.appspot.com",
+      messagingSenderId: "587008636870"
+    };
+    firebase.initializeApp(config);
+  </script>
+
+  <div id="login" ng-hide="hideLogin">
+    <div id="login_div" class="main-div">
+      <h3>Faça seu login...</h3>
+      <input type="email" placeholder="Email..." id="email_field" />
+      <input type="password" placeholder="Password..." id="password_field" />
+
+      <button ng-click="login()" >Login</button>
+    </div>
+  </div>
+  <div id="system" ng-hide="!hideLogin">
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+      <h5 class="my-0 mr-md-auto font-weight-normal">English Help</h5>
+      <nav class="my-2 my-md-0 mr-md-3">
+        <a class="btn btn-outline-primary"  data-toggle="modal" data-target="#eliminarPalavrasModal">Eliminar Palavras</a>
+      </nav>
+      <nav class="my-2 my-md-0 mr-md-3">
+        <a class="btn btn-outline-danger"  data-toggle="modal" data-target="#exampleModal">Ajuda</a>
+        <a class="btn btn-outline-dark" href="#" ng-click="logout()">Logout</a>
+      </nav>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ajuda</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Esse sistema irá te ajudar a aprender as palavras que você não sabe ou está aprendendo, para que isso seja possível, primeiro
+            ele precisa entender quais palavras você já sabe. Nessa fase de 'amadurecimento', você verá palavras que já conhece, caso conheça realmente
+            determinada palavra, você poderá marcar como 'Já sei', e ela não aparecerá mais na tabela de traduções.</p>
+            <br>
+            <p>Você poderá também eliminar várias palavras de uma vez, usando o 'Eliminar palavras'.
+            Você deve colocar o número de palavras que quer eliminar,
+            e o sistema irá eliminar as primeiras X palavras mais faladas no Inglês. Ex: Colocando o número 250, o sistema irá eliminar as 250 palavras
+            mais usadas no Inglês</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="eliminarPalavrasModal" tabindex="-1" role="dialog" aria-labelledby="eliminarPalavrasModal" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Eliminar Palavras</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="container">
+              <p>
+              Você deve colocar o número de palavras que quer eliminar,
+              e o sistema irá eliminar as primeiras X palavras mais faladas no Inglês - segundo o site blablabla.com
+              Ex: Colocando o número 250, o sistema irá eliminar as 250 palavras
+              mais usadas no Inglês.
+              </p>
+              <br>
+              <div class="col-sm">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="Eliminar palavras" ng-model="qnt_words_eliminated">
+                  <div class="input-group-append">
+                    <button ng-click="eliminarPalavras()" class="btn btn-outline-secondary" type="button" id="button-addon2">Eliminar</button>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="snackbar"></div>
+
+    <div class="grid-container">
+      <div class="item2">
+        <div style="width:100%" id="player"></div>
+        <br>
+        <div>
+          <button type="button" class="btn btn-outline-dark" ng-click="pauseVideo()">Pause Video</button>
+          <button type="button" class="btn btn-outline-success" ng-click="continuePlay()">Play Video</button>
+          <button type="button" class="btn btn-outline-primary" ng-click="changeVideo()">Change Video</button>
+        </div>
+        <p style="font-size: 14px;">Use o botão "Pause Video" para parar o vídeo e atualizar a tabela de traduções</p>
+        <p style="font-size: 14px;">O botão "Play Video", executa o vídeo e salva as palavras no sistema (:</p>
+      </div>
+      <div class="item4" style="padding: 20px">
+        <table  class="table table-sm">
+            <thead>
+              <tr>
+                <th scope="row" >Palavra</th>
+                <th>Tradução</th>
+                <th>Já sei</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="item in itens">
+                <td scope="row"><strong>{{ item.word }}</strong></td>
+                <td>{{ item.translate }}</td>
+                <td><input type="checkbox" ng-model="item.iknow"></input></td>
+              </tr>
+            </tbody>
+        </table>
+        <br>
+      </div>
+    </div>
+  </div>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">© 2018-2019 English Help</p>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="#">Privacy</a></li>
+          <li class="list-inline-item"><a href="#">Terms</a></li>
+          <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+    </footer>
+</body>
+</html>
+
+<!--https://translation.googleapis.com/language/translate/v2?key=AIzaSyBMhAfmuxipl-WQmPNj1BOvx9ImPqVmPdA -->
